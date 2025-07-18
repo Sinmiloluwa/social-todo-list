@@ -15,7 +15,7 @@ Authorization: Bearer {token}
 All responses follow a consistent format:
 ```json
 {
-    "success": true/false,
+    "status": true/false,
     "message": "Response message",
     "data": {} // Response data (when applicable)
 }
@@ -44,7 +44,7 @@ Creates a new user account.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "User registered successfully",
     "data": {
         "id": 1,
@@ -72,7 +72,7 @@ Authenticates a user and returns user data.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Logged in",
     "data": {
         "id": 1,
@@ -94,7 +94,7 @@ Logs out the authenticated user.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Logged out successfully"
 }
 ```
@@ -132,7 +132,7 @@ Searches for users by username.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Users found",
     "data": [
         {
@@ -168,7 +168,7 @@ Creates a new todo list. Only admin users can create todo lists.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Todo list created",
     "data": {
         "id": 1,
@@ -191,7 +191,7 @@ Retrieves all todo lists for the authenticated user. Admins see lists they own, 
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Todo lists retrieved",
     "data": {
         "data": [
@@ -243,7 +243,7 @@ Retrieves a specific todo list with its items and members.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Todo list found",
     "data": {
         "id": 1,
@@ -297,7 +297,7 @@ Updates a todo list. Only the owner can update the list.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Todo list updated",
     "data": {
         "id": 1,
@@ -323,7 +323,7 @@ Deletes a todo list. Only the owner can delete the list.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Todo list deleted"
 }
 ```
@@ -342,7 +342,7 @@ Invites a user to join a todo list. Only the owner can invite users.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "User invited to todo list",
     "data": {
         "list": {
@@ -384,7 +384,7 @@ Creates a new todo item in a todo list.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Item created",
     "data": {
         "id": 1,
@@ -422,7 +422,7 @@ Updates a todo item. Only the creator can update the item.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Item updated",
     "data": {
         "id": 1,
@@ -453,7 +453,7 @@ Deletes a todo item. Only the creator can delete the item.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Item deleted"
 }
 ```
@@ -471,7 +471,7 @@ Marks a todo item as completed. Only the creator can complete the item.
 **Response:**
 ```json
 {
-    "success": true,
+    "status": true,
     "message": "Item marked as completed",
     "data": {
         "id": 1,
@@ -521,7 +521,7 @@ The application supports real-time updates using Laravel Broadcasting. Authentic
 
 ```json
 {
-    "success": false,
+    "status": false,
     "message": "Error description",
     "errors": {
         "field": ["Validation error message"]
