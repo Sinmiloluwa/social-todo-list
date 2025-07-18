@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TodoItemResource extends JsonResource
+class TodoListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,12 @@ class TodoItemResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'todo_list_id' => $this->todo_list_id,
             'title' => $this->title,
             'description' => $this->description,
-            'completed' => $this->completed,
             'created_at' => $this->created_at,
-            'created_by' => $this->creator->username,
+            'owner' => new UserResource($this->whenLoaded('owner')),
+            'users' => UserResource::collection($this->whenLoaded('users')),
+            'items' => TodoItemResource::collection($this->whenLoaded('items')),
         ];
     }
 }

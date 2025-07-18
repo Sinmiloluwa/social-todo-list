@@ -55,4 +55,17 @@ class TodoItemController extends Controller
 
         return $this->okResponse('Item deleted');
     }
+
+    public function complete(TodoItem $todoItem)
+    {
+        $todoItem->load('creator');
+
+        if ($todoItem->created_by !== auth()->id()) {
+            return $this->forbiddenResponse('You are not authorized to complete this item');
+        }
+
+        $todoItem->update(['completed' => true]);
+
+        return $this->okResponse('Item marked as completed', new TodoItemResource($todoItem));
+    }
 }

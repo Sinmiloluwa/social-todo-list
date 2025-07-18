@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InviteUserRequest;
+use App\Http\Resources\TodoListResource;
 use App\Models\TodoList;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class TodoListController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
         $user = auth()->user();
 
-        $query = TodoList::with(['items', 'owner', 'users']);
+        $query = TodoList::with([
+            'items' => function ($q) {
+                $q->orderBy('created_at', 'desc');
+            },
+            'owner',
+            'users'
+        ]);
 
         if ($user->type === 'admin') {
             $query->where('owner_id', $user->id);
@@ -23,9 +30,9 @@ class TodoListController extends Controller
             })->where('owner_id', '!=', $user->id);
         }
 
-        $lists = $query->get();
+        $lists = $query->orderBy('created_at', 'desc')->paginate(10);
 
-        return $this->okResponse('Todo lists retrieved', $lists);
+        return $this->okResponse('Todo lists retrieved', TodoListResource::collection($lists));
     }
 
     public function create(Request $request)
@@ -34,6 +41,9 @@ class TodoListController extends Controller
             'title' => 'required|string',
             'description' => 'nullable|string',
         ]);
+        if (auth()->user()->type !== 'admin') {
+            return $this->forbiddenResponse('You are not authorized to create todo lists');
+        }
 
         $list = auth()->user()->todoLists()->create([
             'title' => $request->title,

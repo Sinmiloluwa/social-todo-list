@@ -8,6 +8,5 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 
 
 Broadcast::channel('todolist.{listId}', function ($user, $listId) {
-    return $user->todoLists()->where('id', $listId)->exists()
-        || $user->ownedTodoLists()->where('id', $listId)->exists();
+    return $user->todoLists()->where('id', $listId)->exists();
 });

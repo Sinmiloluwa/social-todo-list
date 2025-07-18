@@ -44,4 +44,13 @@ class AuthController extends Controller
 
         return $this->okResponse('Logged in', new UserResource($user));
     }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return $this->okResponse('Logged out successfully');
+    }
 }

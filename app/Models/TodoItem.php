@@ -10,6 +10,7 @@ class TodoItem extends Model
         'description',
         'title',
         'created_by',
+        'completed'
     ];
 
     public function list(): \Illuminate\Database\Eloquent\Relations\BelongsTo
