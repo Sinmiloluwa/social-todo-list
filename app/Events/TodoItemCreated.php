@@ -39,7 +39,8 @@ class TodoItemCreated implements ShouldBroadcast
     {
         return [
             'id' => $this->todoItem->id,
-            'title' => $this->todoItem->title,
+            'description' => $this->todoItem->description,
+            'created_at' => $this->todoItem->created_at,
             'created_by' => [
                 'id' => $this->todoItem->creator->id,
                 'username' => $this->todoItem->creator->username,
