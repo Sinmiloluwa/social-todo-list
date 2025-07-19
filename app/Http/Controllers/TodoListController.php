@@ -47,6 +47,7 @@ class TodoListController extends Controller
 
         $list = auth()->user()->todoLists()->create([
             'title' => $request->title,
+            'description' => $request->description
         ]);
 
         return $this->createdResponse('Todo list created', $list);
