@@ -10,8 +10,9 @@ class UserController extends Controller
 {
     public function search(Request $request)
     {
-        $username = $request->query('username');
-        $users = User::where('username', 'LIKE', "%{$username}%")
+        $username = strtolower($request->query('username'));
+
+        $users = User::whereRaw('LOWER(username) LIKE ?', ["%{$username}%"])
             ->select('id', 'username', 'name')
             ->get();
 

@@ -16,21 +16,19 @@ return [
     */
 
     'paths' => ['api/*', 'sanctum/csrf-cookie', 'broadcasting/auth'],
-
     'allowed_methods' => ['*'],
-
-    'allowed_origins' => ['*'],
-
-    'allowed_origins_patterns' => [],
-
-    'access-control-allow-origin' => ['*'],
-
+    'allowed_origins' => [
+        'http://localhost:3000',
+        'http://localhost:3001',
+        'https://social-todo-frontend.vercel.app', // Add your Vercel domain
+    ],
+    'allowed_origins_patterns' => [
+        // You can also use patterns if needed
+        // '/^https:\/\/.*\.vercel\.app$/',
+    ],
     'allowed_headers' => ['*'],
-
     'exposed_headers' => [],
-
     'max_age' => 0,
-
     'supports_credentials' => true,
 
 ];
