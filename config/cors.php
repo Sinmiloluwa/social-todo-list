@@ -20,7 +20,8 @@ return [
     'allowed_origins' => [
         'http://localhost:3000',
         'http://localhost:3001',
-        'https://social-todo-frontend.vercel.app', // Add your Vercel domain
+        'https://social-todo-frontend.vercel.app',
+        'https://social-todo-frontend-git-main-sinmiloluwas-projects.vercel.app'
     ],
     'allowed_origins_patterns' => [
         // You can also use patterns if needed
